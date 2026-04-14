@@ -26,6 +26,15 @@ app.get('/', (req, res) => {
 // 2. 使用者相關功能 (轉接到 userRoutes)，所有關於 /users 的請求，都交給 userRoutes 處理
 app.use('/users', userRoutes); // 這裡不需要再寫一遍 pool.query 了，因為邏輯會寫在 Controller 裡
 
+// 範例：你的 /users 路由
+try {
+  const [rows] = await pool.query('SELECT * FROM users');
+  res.render('users/list', { users: rows });
+} catch (err) {
+  console.error("❌ 真正的資料庫錯誤原因：", err); // <--- 補上這一行
+  res.send("資料庫讀取失敗");
+}
+
 // 3. 404 處理器 (必須放在所有路由之後！)
 app.use((req, res) => {
     res.status(404).render('p404', { title: '頁面不存在' });
