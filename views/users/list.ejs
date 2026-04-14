@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="header-section">
+        <h2>👥 使用者管理清單</h2>
+        <a href="/users/add" class="btn btn-primary">➕ 新增成員</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>電子郵件</th>
+                <th style="text-align: center;">管理操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (users.length > 0) { %>
+                <% users.forEach(user => { %>
+                    <tr>
+                        <td><%= user.id %></td>
+                        <td><strong><%= user.name %></strong></td>
+                        <td><%= user.email %></td>
+                        <td style="text-align: center;">
+                            <a href="/users/edit/<%= user.id %>" class="action-link edit">編輯</a>
+                            <span class="divider">|</span>
+                            <a href="/users/delete/<%= user.id %>" 
+                               class="action-link delete" 
+                               onclick="return confirm('確定要刪除 [<%= user.name %>] 嗎？')">
+                               刪除
+                            </a>
+                        </td>
+                    </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="4" class="empty-state">目前資料庫是空的，去新增一個吧！</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+    
+    <div class="footer-link">
+        <a href="/">← 回到首頁</a>
+    </div>
+</div>

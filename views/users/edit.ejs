@@ -1,0 +1,17 @@
+<div class="container">
+    <h2>✏️ 編輯成員資料</h2>
+    <form action="/users/update/<%= user.id %>" method="POST" class="styled-form">
+        <div class="form-group">
+            <label>姓名</label>
+            <input type="text" name="name" value="<%= user.name %>" required>
+        </div>
+        <div class="form-group">
+            <label>電子郵件</label>
+            <input type="email" name="email" value="<%= user.email %>" required>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn-primary">儲存修改</button>
+            <a href="/users" class="btn-secondary">取消</a>
+        </div>
+    </form>
+</div>

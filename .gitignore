@@ -1,0 +1,11 @@
+# 忽略 Node.js 的套件資料夾 (太重了，雲端會自己安裝)
+node_modules/
+
+# 忽略隱私保險箱 (絕對不能傳上去)
+.env
+
+# 忽略 Mac 系統自動產生的垃圾檔案
+.DS_Store
+
+# 忽略日誌檔
+npm-debug.log*

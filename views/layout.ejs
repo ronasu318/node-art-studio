@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title><%= typeof title !== 'undefined' ? title : '我的藝術工作室' %></title>
+    
+    <link rel="stylesheet" href="/css/style.css"> 
+
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <main>
+        <%- body %>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,64 @@
+/* public/css/style.css */
+:root {
+    --primary-color: #5d81a5;    /* 沉穩的藍灰色 */
+    --danger-color: #d9534f;
+    --bg-color: #f4f7f6;
+    --border-color: #e0e0e0;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #444;
+}
+
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+}
+
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+/* 表格美化：移除 border="1" 的廉價感 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #f9f9f9;
+    padding: 12px;
+    border-bottom: 2px solid var(--border-color);
+    font-size: 0.9em;
+    color: #888;
+}
+
+td {
+    padding: 15px 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* 按鈕與連結樣式 */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.action-link { text-decoration: none; font-weight: 500; }
+.action-link.edit { color: var(--primary-color); }
+.action-link.delete { color: var(--danger-color); }
+.divider { color: #ddd; margin: 0 5px; }
+.empty-state { text-align: center; color: #aaa; padding: 40px; }
