@@ -26,45 +26,10 @@ app.get('/', (req, res) => {
 // 2. 使用者相關功能 (轉接到 userRoutes)，所有關於 /users 的請求，都交給 userRoutes 處理
 app.use('/users', userRoutes); // 這裡不需要再寫一遍 pool.query 了，因為邏輯會寫在 Controller 裡
 
-// 範例：你的 /users 路由
-try {
-  const [rows] = await pool.query('SELECT * FROM users');
-  res.render('users/list', { users: rows });
-} catch (err) {
-  console.error("❌ 真正的資料庫錯誤原因：", err); // <--- 補上這一行
-  res.send("資料庫讀取失敗");
-}
-
 // 3. 404 處理器 (必須放在所有路由之後！)
 app.use((req, res) => {
     res.status(404).render('p404', { title: '頁面不存在' });
 });
-
-/*/ 建立一個專門看「使用者清單」的頁面
-app.get('/users', async (req, res) => {
-    try {
-        // 3. 這就是那個陌生的 async/await！
-        // 邏輯：請程式「等一下 (await)」，直到資料庫把資料傳回來
-        const [rows] = await pool.query('SELECT * FROM users');
-
-        // 4. 拿到資料後，把這一箱資料 (rows) 交給 ejs 檔案去擺盤
-        res.render('users', { users: rows }); 
-    } catch (err) {
-        // 如果失敗（例如 XAMPP 沒開），就會跳到這裡
-        console.error('資料庫連線出錯：', err);
-        res.status(500).send('資料庫抓不到東西，請檢查 XAMPP 是否有開啟 MySQL');
-    }
-});
-
-5. 啟動伺服器
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log('------------------------------------');
-    console.log(`🚀 伺服器已啟動：http://localhost:${PORT}`);
-    console.log(`👥 使用者清單：http://localhost:${PORT}/users`);
-    console.log('------------------------------------');
-});
-*/
 
 // index.js 底部
 const PORT = process.env.PORT || 3000; 

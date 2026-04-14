@@ -69,3 +69,14 @@ exports.deleteUser = async (req, res) => {
         res.status(500).send('刪除失敗');
     }
 };
+
+exports.index = async (req, res) => {
+  try {
+    const [rows] = await pool.query('SELECT * FROM users');
+    res.render('users/list', { users: rows });
+  } catch (err) {
+    // 💡 就是這一行！它會把真正的錯誤原因印在 Render 的黑色 Logs 視窗
+    console.error("❌ 真正的資料庫錯誤原因：", err); 
+    res.send("資料庫讀取失敗，請去查看伺服器 Log");
+  }
+};
